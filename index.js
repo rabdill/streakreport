@@ -4,6 +4,12 @@ var app = express();
 var request = require('request');
 var cheerio = require('cheerio');
 
+index = "<h1>Streak Report</h1><p>GitHub recently removed its \"streak\" feature, which told users how many consecutive days they'd made a public contribution to a GitHub repository. Streak Report attempts to replace this functionality by analyzing the contribution graph from a user's profile page to determine their current streak.<p>To start, point your browser to streak.report/usernameHere.<p>For example: <a href='https://streak.report/torvalds'>https://streak.report/torvalds</a>"
+
+app.get('/', function(req, res) {
+	res.send(index)
+});
+
 app.get('/:user', function(req, res) {
 	countContribs(req.params.user).then(function(count) {
 		res.send(count);
